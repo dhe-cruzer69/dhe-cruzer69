@@ -141,12 +141,6 @@ No command is reported as **PASS** unless it actually passed.
 
 The five infrastructure primitives are the reusable layer. Product systems can then consume them for code review, skills, developer workflows, data exploration, and publishing automation.
 
-## Support X4
-
-If these projects save you time or become part of your stack, consider supporting continued open-source development.
-
-**[GitHub Sponsors → dhe-cruzer69](https://github.com/sponsors/dhe-cruzer69)**
-
 ---
 
 *Building in public. Contributing upstream. Documenting the architecture. Verifying the work.*
