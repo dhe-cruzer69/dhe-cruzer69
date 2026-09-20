@@ -8,7 +8,7 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 
 | Project | Role |
 |---|---|
-| [**RepoDoc**](https://github.com/dhe-cruzer69/x4-repodoc) | Repository health, security, CI, secrets, links, and workflow auditing |
+| **RepoDoc** | Repository health, security, CI, secrets, links, and workflow auditing |
 | [**AgentTest**](https://github.com/dhe-cruzer69/x4-eval) | Reproducible AI-agent evaluation and regression testing |
 | [**MCPSafe**](https://github.com/dhe-cruzer69/x4-mcp-gateway) | Policy-controlled MCP/tool security gateway with approval and audit |
 | [**ModelRoute**](https://github.com/dhe-cruzer69/x4-ai) | Provider-agnostic model selection, routing, fallback, cost, and latency controls |
