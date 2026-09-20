@@ -33,8 +33,8 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 ## Provider & Agent Ecosystem
 
 - [**OpenRouter / @OpenRouterTeam**](https://github.com/OpenRouterTeam) — unified model access, provider routing, fallbacks, and agent tooling.
-- [**Arcade / @ArcadeAI**](https://github.com/ArcadeAI) — agent tools, MCP, and tool-development infrastructure.
-- [**NVIDIA Skills / @NVIDIA**](https://github.com/NVIDIA/skills) — NVIDIA-verified agent skills for CUDA, inference, robotics, simulation, RAG, and Physical AI.
+- [**Arcade / @ArcadeAI**](https://github.com/ArcadeAI) — agent tools, MCP servers, and tool-development infrastructure.
+- [**NVIDIA Skills / @NVIDIA**](https://github.com/NVIDIA/skills) — NVIDIA-verified Agent Skills spanning CUDA, inference, robotics, simulation, RAG, and Physical AI. citeturn0search0
 - [**OpenAI / @openai**](https://github.com/openai) — official SDKs and agent/provider integration surfaces.
 - [**GitHub / @github**](https://github.com/github) — source control, CI/CD, issues, pull requests, and developer automation.
 - **Autopilot workflows** — controlled autonomous execution with explicit validation and human review gates.
@@ -95,6 +95,20 @@ Machine-readable evidence, trace IDs, policy versions, hashes, timings, and stru
                        │                     │
                     DataLens              PostFlow
 ```
+
+## BEAST MODE Final Gate
+
+The profile and X4 portfolio follow a conservative completion rule:
+
+- **BUILD** — implementation exists
+- **TEST** — automated tests/checks execute
+- **SECURE** — secrets, dependencies, permissions, and tool boundaries are reviewed
+- **VERIFY** — results are re-read from the authoritative source
+- **EVIDENCE** — claims are tied to observable artifacts
+- **ROLLBACK** — destructive or high-risk mutations require an explicit recovery path
+- **UNKNOWN** — anything not verified remains explicitly unknown
+
+No stars, adoption, revenue, trending position, performance multiplier, or launch outcome is represented as guaranteed. Those remain measurable outcomes or planning hypotheses until independently observed.
 
 ## Quality Gate
 
