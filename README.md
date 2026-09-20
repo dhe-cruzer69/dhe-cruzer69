@@ -34,7 +34,7 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 
 - [**OpenRouter / @OpenRouterTeam**](https://github.com/OpenRouterTeam) — unified model access, provider routing, fallbacks, and agent tooling.
 - [**Arcade / @ArcadeAI**](https://github.com/ArcadeAI) — agent tools, MCP servers, and tool-development infrastructure.
-- [**NVIDIA Skills / @NVIDIA**](https://github.com/NVIDIA/skills) — NVIDIA-verified Agent Skills spanning CUDA, inference, robotics, simulation, RAG, and Physical AI. citeturn0search0
+- [**NVIDIA Skills / @NVIDIA**](https://github.com/NVIDIA/skills) — NVIDIA-verified Agent Skills spanning CUDA, inference, robotics, simulation, RAG, and Physical AI.
 - [**OpenAI / @openai**](https://github.com/openai) — official SDKs and agent/provider integration surfaces.
 - [**GitHub / @github**](https://github.com/github) — source control, CI/CD, issues, pull requests, and developer automation.
 - **Autopilot workflows** — controlled autonomous execution with explicit validation and human review gates.
