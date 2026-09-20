@@ -44,6 +44,42 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 
 BEAST MODE is the X4 operating standard: fast execution without bypassing safety gates. Changes are evidence-backed, tests are real, secrets stay out of repositories, and unresolved evidence remains `UNKNOWN`.
 
+## Portfolio Reconciliation — 2026-09-20
+
+**Canonical contract:** 69 repositories  
+**Physical `x4-*` inventory:** 71 repositories  
+**Net reconciliation delta:** +2 physical repositories
+
+### Exact reconciliation ledger
+
+| State | Count | Evidence |
+|---|---:|---|
+| Canonical contract | 69 | X4 reconciliation manifest |
+| Physical X4 repositories | 71 | Latest inventory evidence |
+| Extra/unexpected | 6 | `x4-agents`, `x4-claw-`, `x4-core`, `x4-mcp`, `x4-mcp-gateway`, `x4-sandbox` |
+| Missing canonical targets | 4 | `x4-storage`, `x4-fs`, `x4-archive`, `x4-knowledge` |
+| Net difference | +2 | 71 − 69 |
+
+The **71-vs-69 discrepancy is therefore reconciled arithmetically**: six physical extras and four missing canonical targets produce a net surplus of two. Repository identity mapping is kept explicit rather than silently treating differently named repositories as equivalent.
+
+### Gate status
+
+| Gate | Status | Closure rule |
+|---|---|---|
+| Branch protection | **UNKNOWN** | GitHub integration does not currently expose sufficient branch-protection evidence; no PASS claim |
+| Vercel | **EXTERNAL FAILURE REPORTED** | External deployment/integration failure remains documented; no false-green claim |
+| Fleet gate | **OPEN** | Evidence closure is still pending |
+| Repository evidence | **DOCUMENTED** | Reconciliation ledger and hardening evidence recorded |
+| Dependency PRs | **PENDING / UNTOUCHED** | Dependency changes are not merged or closed without repository-specific validation |
+
+### Evidence policy
+
+`OBSERVED` → `CORRELATED` → `HYPOTHESIS` → `VALIDATED`
+
+`UNKNOWN — HUMAN REVIEW REQUIRED`
+
+No repository is marked production-validated merely because it exists, has a README, or has a merged pull request.
+
 ## Engineering Principles
 
 - Security by default
