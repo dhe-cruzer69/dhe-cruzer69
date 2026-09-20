@@ -27,8 +27,6 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 | [**x4-sandbox**](https://github.com/dhe-cruzer69/x4-sandbox) | Sandboxed tool execution with policy and audit |
 | [**x4-mcp-gateway**](https://github.com/dhe-cruzer69/x4-mcp-gateway) | Policy-controlled MCP gateway |
 | [**x4-research**](https://github.com/dhe-cruzer69/x4-research) | Evidence-first research engine |
-| [**x4-local-ai-runtime**](https://github.com/dhe-cruzer69/x4-local-ai-runtime) | Local AI runtime infrastructure |
-| [**x4-mcp**](https://github.com/dhe-cruzer69/x4-mcp) | X4 MCP integration layer |
 
 ## Provider & Agent Ecosystem
 
