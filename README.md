@@ -32,13 +32,19 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 
 ## Provider & Agent Ecosystem
 
-- [**OpenRouter / @OpenRouterTeam**](https://github.com/OpenRouterTeam) — unified model access, provider routing, fallbacks, and agent tooling.
+- [**OpenRouter / @OpenRouterTeam**](https://github.com/OpenRouterTeam) — unified model access, provider routing, fallbacks, and official agent skills.
 - [**Arcade / @ArcadeAI**](https://github.com/ArcadeAI) — agent tools, MCP servers, and tool-development infrastructure.
 - [**NVIDIA Skills / @NVIDIA**](https://github.com/NVIDIA/skills) — NVIDIA-verified Agent Skills spanning CUDA, inference, robotics, simulation, RAG, and Physical AI.
 - [**OpenAI / @openai**](https://github.com/openai) — official SDKs and agent/provider integration surfaces.
 - [**GitHub / @github**](https://github.com/github) — source control, CI/CD, issues, pull requests, and developer automation.
 - **Autopilot workflows** — controlled autonomous execution with explicit validation and human review gates.
 - **BEAST MODE engineering** — fast execution backed by tests, security checks, evidence, rollback paths, and verification.
+
+## BEAST MODE
+
+**Build → Validate → Verify → Record → Release**
+
+BEAST MODE is the X4 operating standard: fast execution without bypassing safety gates. Changes are evidence-backed, tests are real, secrets stay out of repositories, and unresolved evidence remains `UNKNOWN`.
 
 ## Engineering Principles
 
