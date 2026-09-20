@@ -66,11 +66,11 @@ The **71-vs-69 discrepancy is therefore reconciled arithmetically**: six physica
 
 | Gate | Status | Closure rule |
 |---|---|---|
-| Branch protection | **UNKNOWN** | GitHub integration does not currently expose sufficient branch-protection evidence; no PASS claim |
-| Vercel | **EXTERNAL FAILURE REPORTED** | External deployment/integration failure remains documented; no false-green claim |
-| Fleet gate | **OPEN** | Evidence closure is still pending |
+| Branch protection | **BLOCKED — ACCESS REQUIRED** | GitHub integration receives HTTP 403 for the branch-protection endpoint; settings must be verified/changed by an authorized GitHub settings session |
+| Vercel | **BLOCKED — VERCEL ACCESS REQUIRED** | Connected Vercel account exposes no teams/projects in this session; deployment cannot be verified or repaired here |
+| Fleet gate | **OPEN — EVIDENCE REQUIRED** | No authoritative Fleet closure artifact is available in the connected repositories/tools; no false PASS claim |
 | Repository evidence | **DOCUMENTED** | Reconciliation ledger and hardening evidence recorded |
-| Dependency PRs | **PENDING / UNTOUCHED** | Dependency changes are not merged or closed without repository-specific validation |
+| Dependency PRs | **CLOSED / MERGED** | `x4-agents#2` reviewed, hardened against false-green CI, and squash-merged |
 
 ### Evidence policy
 
