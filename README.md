@@ -2,7 +2,39 @@
 
 **AI • Agents • Automation • Developer Infrastructure**
 
-Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnostic AI, local-first memory, policy-controlled MCP, sandboxed execution, evaluation, routing, and evidence-driven research.
+Building **local-first AI infrastructure and agent systems**: secure runtimes, tool-using agents, MCP integration, sandboxed execution, evaluation, model routing, observability, and evidence-driven automation.
+
+## Architecture at a Glance
+
+```text
+LOCAL / EDGE AI
+      │
+   Edge0* / Ollama
+      │
+      ▼
+   X4 AGENTS
+      │
+ ┌────┼───────────────┐
+ ▼    ▼               ▼
+Test MCP            Route
+ │    │               │
+ └────┼───────────────┘
+      ▼
+   FleetView
+      │
+      ▼
+Agentic workflows + developer automation
+```
+
+\* **Edge0 is used here as the local/edge runtime concept, not as an external repository claim.**
+
+### Agent Engineering Layer
+
+The X4 architecture follows the same progression used in modern agent engineering:
+
+**Model → Agent → Tools/MCP → Policy → Evaluation → Routing → Observability → Workflow**
+
+MCP provides a standardized interface for exposing tools and context to AI applications. Security controls such as authentication, authorization, approval, sandboxing, rate limiting, and audit logging are enforced by the surrounding system rather than assumed to come from MCP alone.
 
 ## X4 Infrastructure
 
@@ -30,13 +62,15 @@ Building the **X4** open-source ecosystem: secure agent runtimes, provider-agnos
 
 ## Provider & Agent Ecosystem
 
-- [**OpenRouter / @OpenRouterTeam**](https://github.com/OpenRouterTeam) — unified model access, provider routing, fallbacks, and official agent skills.
+- [**OpenRouter / @OpenRouterTeam**](https://github.com/OpenRouterTeam) — unified model access, provider routing, fallbacks, and model access, routing, and agent integrations.
 - [**Arcade / @ArcadeAI**](https://github.com/ArcadeAI) — agent tools, MCP servers, and tool-development infrastructure.
 - [**NVIDIA Skills / @NVIDIA**](https://github.com/NVIDIA/skills) — NVIDIA-verified Agent Skills spanning CUDA, inference, robotics, simulation, RAG, and Physical AI.
 - [**OpenAI / @openai**](https://github.com/openai) — official SDKs and agent/provider integration surfaces.
 - [**GitHub / @github**](https://github.com/github) — source control, CI/CD, issues, pull requests, and developer automation.
 - **Autopilot workflows** — controlled autonomous execution with explicit validation and human review gates.
 - **BEAST MODE engineering** — fast execution backed by tests, security checks, evidence, rollback paths, and verification.
+
+These references are ecosystem/tooling references only; they do not imply affiliation, endorsement, sponsorship, or partnership.
 
 ## BEAST MODE
 
@@ -56,7 +90,7 @@ BEAST MODE is the X4 operating standard: fast execution without bypassing safety
 |---|---:|---|
 | Canonical contract | 69 | X4 reconciliation manifest |
 | Physical X4 repositories | 71 | Latest inventory evidence |
-| Extra/unexpected | 6 | `x4-agents`, `x4-claw-`, `x4-core`, `x4-mcp`, `x4-mcp-gateway`, `x4-sandbox` |
+| Extra/unexpected | 6 | `x4-agents`, `x4-claw-*`, `x4-core`, `x4-mcp`, `x4-mcp-gateway`, `x4-sandbox` |
 | Missing canonical targets | 4 | `x4-storage`, `x4-fs`, `x4-archive`, `x4-knowledge` |
 | Net difference | +2 | 71 − 69 |
 
@@ -173,7 +207,7 @@ No command is reported as **PASS** unless it actually passed.
 
 ## Roadmap
 
-**Foundation → Evaluation → Security → Routing → Observability → Products**
+**Local AI → Agents → Evaluation → MCP/Tool Security → Routing → Observability → Products**
 
 The five infrastructure primitives are the reusable layer. Product systems can then consume them for code review, skills, developer workflows, data exploration, and publishing automation.
 
