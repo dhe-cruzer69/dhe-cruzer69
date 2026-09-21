@@ -4,40 +4,25 @@
 
 Building **local-first AI infrastructure and agent systems**: secure runtimes, tool-using agents, MCP integration, sandboxed execution, evaluation, model routing, observability, and evidence-driven automation.
 
-## Architecture at a Glance
+> Autonomous where authorized. Verifiable everywhere. Human-controlled when uncertain.
 
-```text
-LOCAL / EDGE AI
-      │
-   Edge0* / Ollama
-      │
-      ▼
-   X4 AGENTS
-      │
- ┌────┼───────────────┐
- ▼    ▼               ▼
-Test MCP            Route
- │    │               │
- └────┼───────────────┘
-      ▼
-   FleetView
-      │
-      ▼
-Agentic workflows + developer automation
-```
+---
 
-\* **Edge0** is the local/edge runtime *concept* used in this portfolio — not an external repository claim.
+## Flagship
 
-### Agent Engineering Progression
+| Project | Role |
+|---------|------|
+| [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Control plane — local-first, provider-agnostic agent runtime with policy, MCP, routing, audit |
+| [**x4-agents**](https://github.com/dhe-cruzer69/x4-agents) | Secure multi-agent orchestration — task graphs, sandboxed tools, approvals, memory |
+| [**x4-mcp**](https://github.com/dhe-cruzer69/x4-mcp) | Production MCP gateway — registry, auth, permissions, schema validation, rate limits |
+| [**x4-core**](https://github.com/dhe-cruzer69/x4-core) | Shared runtime primitives, config, logging, events, telemetry, plugin system |
 
-**Model → Agent → Tools/MCP → Policy → Evaluation → Routing → Observability → Workflow**
-
-MCP standardizes tool and context interfaces. Authentication, authorization, approval, sandboxing, rate limits, and auditing are enforced by the surrounding system.
+---
 
 ## 7-Capability Autonomous Agent Architecture
 
 | # | Capability | Core mechanism | Success criterion |
-|---|---|---|---|
+|---|------------|----------------|-------------------|
 | 1 | Reliable autonomous execution | Planner + executor + retry/recovery | Goal completed across tools |
 | 2 | Verification before success | Tests + inspection + evidence ledger | No PASS without evidence |
 | 3 | Secure tools & credentials | Sandbox + least privilege + policy gates | Unsafe actions blocked |
@@ -48,99 +33,71 @@ MCP standardizes tool and context interfaces. Authentication, authorization, app
 
 **Key principle:** Never equate execution with success.
 
+```text
+INTENT → PLAN → POLICY → EXECUTE → OBSERVE → VERIFY → EVIDENCE
+                                                      │
+                                         ┌────────────┼────────────┐
+                                         ▼            ▼            ▼
+                                       PASS        UNKNOWN        FAIL
+                                         │            │            │
+                                      RELEASE    HUMAN REVIEW   RECOVER
 ```
-INTENT → PLAN → EXECUTE → OBSERVE → VERIFY → EVIDENCE → SUCCESS
-
-FAIL → DIAGNOSE → RECOVER → RETRY → VERIFY AGAIN
-UNKNOWN → HUMAN REVIEW REQUIRED
-```
-
-## Capability Repos
-
-| Project | Maps to | Description |
-|---|---|---|
-| [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Full stack | Local-first provider-agnostic runtime (MCP, policy, routing, audit) — v0.1.1 |
-| [**x4-evidence**](https://github.com/dhe-cruzer69/x4-evidence) | #2 | Evidence ledger (`OBSERVED` → `VALIDATED` / `UNKNOWN`) — v0.1.1 |
-| [**x4-orchestrator**](https://github.com/dhe-cruzer69/x4-orchestrator) | #5 | Multi-agent coordinator with output validation — v0.1.1 |
-| [**x4-approval**](https://github.com/dhe-cruzer69/x4-approval) | #7 | Risk-based approval gates & autonomy controls — v0.1.1 |
-| [**x4-router-score**](https://github.com/dhe-cruzer69/x4-router-score) | #6 | Scoring router (capability / cost / latency / reliability) — v0.1.1 |
-
-## Infrastructure Layer
-
-| Project | Role |
-|---|---|
-| **RepoDoc** | Repo health, security, CI, secrets, links, workflow auditing |
-| [**AgentTest**](https://github.com/dhe-cruzer69/x4-eval) | Reproducible agent evaluation & regression testing |
-| [**MCPSafe**](https://github.com/dhe-cruzer69/x4-mcp-gateway) | Policy-controlled MCP / tool security gateway |
-| [**ModelRoute**](https://github.com/dhe-cruzer69/x4-ai) | Provider-agnostic model selection & fallback |
-| [**FleetView**](https://github.com/dhe-cruzer69/x4-health) | Fleet-level observability |
-
-> Five questions every system must answer: *Is the repo healthy? Does the agent work? Is the action allowed? Which model should run it? What is the fleet doing?*
-
-## Core Projects
-
-| Project | Description |
-|---|---|
-| [**x4-agents**](https://github.com/dhe-cruzer69/x4-agents) | Secure multi-agent orchestration runtime |
-| [**x4-core**](https://github.com/dhe-cruzer69/x4-core) | Shared runtime primitives |
-| [**x4-ai**](https://github.com/dhe-cruzer69/x4-ai) | Provider-agnostic AI layer |
-| [**x4-memory**](https://github.com/dhe-cruzer69/x4-memory) | Local-first persistent agent memory |
-| [**x4-sandbox**](https://github.com/dhe-cruzer69/x4-sandbox) | Sandboxed tool execution |
-| [**x4-mcp-gateway**](https://github.com/dhe-cruzer69/x4-mcp-gateway) | Policy-controlled MCP gateway |
-| [**x4-research**](https://github.com/dhe-cruzer69/x4-research) | Evidence-first research engine |
-
-## Ecosystem References
-
-OpenRouter • Arcade • NVIDIA Skills • OpenAI • GitHub  
-*Ecosystem tooling references only — no affiliation or endorsement claimed.*
-
-## BEAST MODE
-
-**Build → Validate → Verify → Record → Release**
-
-Fast execution that never bypasses safety gates. Evidence-backed changes. Secrets never committed. `UNKNOWN` remains `UNKNOWN` until validated.
-
-## Portfolio Snapshot — 2026-09-21
-
-| Metric | Value |
-|---|---:|
-| Canonical contract | 69 |
-| Physical `x4-*` inventory | 76 |
-| Net delta | +7 |
-| Missing targets | 4 |
-
-Discrepancy is documented, not hidden.
-
-### Operational Gates
-
-| Gate | Status |
-|---|---|
-| Branch protection | BLOCKED — ACCESS REQUIRED |
-| Vercel | BLOCKED — VERCEL ACCESS REQUIRED |
-| Fleet | OPEN — EVIDENCE REQUIRED |
-| Evidence | DOCUMENTED |
-| Dependency PRs | CLOSED / MERGED |
-
-## Engineering Principles
-
-Security by default • Least privilege • Explicit high-risk approval  
-Local-first • Provider-agnostic • Observable & auditable  
-Evidence over claims • `UNKNOWN` stays `UNKNOWN`  
-No fake PASS • No secrets in repos • Prefer upstream contribution
-
-## Quality Gate
-
-Ready only when checks actually pass: install, tests, lint, secrets scan, permissions, docs, clean-machine start, release build.  
-No command is reported **PASS** unless it passed.
-
-## Lineage
-
-[ariexus](https://github.com/dhe-cruzer69/ariexus) • [omniforge](https://github.com/dhe-cruzer69/omniforge)
-
-## Roadmap
-
-Local AI → Agents → Evaluation → MCP/Tool Security → Routing → Observability → Products
 
 ---
 
-*Building in public. Contributing upstream. Documenting the architecture. Verifying the work.*
+## Capability Layer
+
+| Project | Maps to | Description |
+|---------|---------|-------------|
+| [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Full stack | Control plane + runtime |
+| [**x4-evidence**](https://github.com/dhe-cruzer69/x4-evidence) | #2 | Evidence ledger (`OBSERVED` → `VALIDATED` / `UNKNOWN`) |
+| [**x4-orchestrator**](https://github.com/dhe-cruzer69/x4-orchestrator) | #5 | Multi-agent coordinator with output validation |
+| [**x4-approval**](https://github.com/dhe-cruzer69/x4-approval) | #7 | Risk-based approval gates & autonomy controls |
+| [**x4-router-score**](https://github.com/dhe-cruzer69/x4-router-score) | #6 | Scoring router (capability / cost / latency / reliability) |
+| [**x4-runtime**](https://github.com/dhe-cruzer69/x4-runtime) | Local AI | Hardware-aware local model runtime |
+| [**x4-skills**](https://github.com/dhe-cruzer69/x4-skills) | Skills | Verified, security-aware agent skills registry |
+| [**x4-sec**](https://github.com/dhe-cruzer69/x4-sec) | Security | Agent security scanner (skills, hooks, MCP, SARIF) |
+| [**x4-obs**](https://github.com/dhe-cruzer69/x4-obs) | Observability | Telemetry and evidence receipts |
+
+---
+
+## Engineering Principles
+
+- Security by default • Least privilege • Explicit high-risk approval  
+- Local-first • Provider-agnostic • Observable & auditable  
+- Evidence over claims • `UNKNOWN` stays `UNKNOWN`  
+- No fake PASS • No secrets in repos • Prefer upstream contribution  
+- Modules first. New repositories only when justified.
+
+## Quality Gate
+
+A change is ready only when the required checks actually pass:  
+install • unit tests • integration tests • lint • typecheck • secret scan • permissions • documentation • clean-machine start • release build.
+
+One unresolved required gate → **UNKNOWN**, not green.
+
+## Autonomy Levels
+
+| Level | Name | Allowed |
+|-------|------|---------|
+| 0 | Observe | Read → inspect → report |
+| 1 | Assist | Read → plan → patch → open PR |
+| 2 | Governed Autopilot | Plan → policy → execute → verify → recover (hard limits) |
+| 3 | Never autonomous | Delete, credential exposure, production destructive, unapproved merge, financial, policy bypass |
+
+Default mode: **Observe / Assist**. Autopilot only inside explicit policy bounds.
+
+---
+
+## Roadmap
+
+```text
+Local AI → Agents → Evaluation → MCP / Tool Security → Routing → Observability → Products
+```
+
+**Build order**  
+`x4-beast` (control plane) → Fleet Contract → Evidence Ledger → Policy Engine → Verification → Autopilot → FleetView → selective consolidation.
+
+---
+
+*Building in public. Documenting the architecture. Verifying the work.*
