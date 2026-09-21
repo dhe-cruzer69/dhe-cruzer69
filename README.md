@@ -36,6 +36,41 @@ The X4 architecture follows the same progression used in modern agent engineerin
 
 MCP provides a standardized interface for exposing tools and context to AI applications. Security controls such as authentication, authorization, approval, sandboxing, rate limiting, and audit logging are enforced by the surrounding system rather than assumed to come from MCP alone.
 
+## The 7-Capability Autonomous Agent Architecture
+
+A stronger definition of a genuinely useful autonomous agent:
+
+| # | Capability | Core mechanism | Success criterion |
+|---|---|---|---|
+| 1 | Reliable autonomous execution | Planner + executor + retry/recovery loop | Goal completed across multiple tools |
+| 2 | Verification before success | Tests + output inspection + evidence ledger | No PASS without evidence |
+| 3 | Secure tools & credentials | Sandbox + least privilege + secret isolation + policy gates | Unsafe actions blocked |
+| 4 | Persistent context & memory | State store + project memory + task history | Agent resumes work correctly |
+| 5 | Multi-agent orchestration | Delegation + specialist agents + coordinator | Complex tasks decomposed effectively |
+| 6 | Intelligent routing | Capability/cost/latency/reliability router | Best available model/tool selected dynamically |
+| 7 | Human-in-the-loop control | Approval gates + uncertainty states + escalation | High-impact actions require human approval |
+
+**Key principle:** The system should never equate execution with success.
+
+```
+INTENT → PLAN → EXECUTE → OBSERVE → VERIFY → EVIDENCE → SUCCESS
+
+If verification fails: FAIL → DIAGNOSE → RECOVER → RETRY → VERIFY AGAIN
+If confidence cannot be established: UNKNOWN → HUMAN REVIEW REQUIRED
+```
+
+## New X4 Capability Repos (2026-09-21)
+
+| Project | Capability | Description |
+|---|---|---|
+| [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Full stack | Local-first provider-agnostic agent runtime with MCP, policy, routing, audit |
+| [**x4-evidence**](https://github.com/dhe-cruzer69/x4-evidence) | #2 Verification | Evidence ledger — OBSERVED → CORRELATED → HYPOTHESIS → VALIDATED / UNKNOWN |
+| [**x4-orchestrator**](https://github.com/dhe-cruzer69/x4-orchestrator) | #5 Orchestration | Multi-agent coordinator that validates specialist outputs |
+| [**x4-approval**](https://github.com/dhe-cruzer69/x4-approval) | #7 Human control | Risk-based approval gates and autonomy controls |
+| [**x4-router-score**](https://github.com/dhe-cruzer69/x4-router-score) | #6 Routing | Capability / cost / latency / reliability scoring router |
+
+These five repositories implement the missing engineering needed for dependable autonomy beyond “agents + MCP”.
+
 ## X4 Infrastructure
 
 | Project | Role |
@@ -78,23 +113,23 @@ These references are ecosystem/tooling references only; they do not imply affili
 
 BEAST MODE is the X4 operating standard: fast execution without bypassing safety gates. Changes are evidence-backed, tests are real, secrets stay out of repositories, and unresolved evidence remains `UNKNOWN`.
 
-## Portfolio Reconciliation — 2026-09-20
+## Portfolio Reconciliation — 2026-09-21
 
 **Canonical contract:** 69 repositories  
-**Physical `x4-*` inventory:** 71 repositories  
-**Net reconciliation delta:** +2 physical repositories
+**Physical `x4-*` inventory:** 76 repositories (previous 71 + 5 new capability repos)  
+**Net reconciliation delta:** +7 physical repositories
 
 ### Exact reconciliation ledger
 
 | State | Count | Evidence |
 |---|---:|---|
 | Canonical contract | 69 | X4 reconciliation manifest |
-| Physical X4 repositories | 71 | Latest inventory evidence |
-| Extra/unexpected | 6 | `x4-agents`, `x4-claw-*`, `x4-core`, `x4-mcp`, `x4-mcp-gateway`, `x4-sandbox` |
+| Physical X4 repositories | 76 | Latest inventory + 5 new capability repos |
+| Extra/unexpected | 11 | previous extras + `x4-beast`, `x4-evidence`, `x4-orchestrator`, `x4-approval`, `x4-router-score` |
 | Missing canonical targets | 4 | `x4-storage`, `x4-fs`, `x4-archive`, `x4-knowledge` |
-| Net difference | +2 | 71 − 69 |
+| Net difference | +7 | 76 − 69 |
 
-The **71-vs-69 discrepancy is therefore reconciled arithmetically**: six physical extras and four missing canonical targets produce a net surplus of two. Repository identity mapping is kept explicit rather than silently treating differently named repositories as equivalent.
+The discrepancy is kept explicit. Repository identity mapping is not silently collapsed.
 
 ### Gate status
 
