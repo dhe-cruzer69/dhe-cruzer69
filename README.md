@@ -32,7 +32,7 @@ Agentic workflows + developer automation
 
 **Model → Agent → Tools/MCP → Policy → Evaluation → Routing → Observability → Workflow**
 
-MCP standardizes tool/context interfaces. Authentication, authorization, approval, sandboxing, rate limits, and auditing are enforced by the surrounding system.
+MCP standardizes tool and context interfaces. Authentication, authorization, approval, sandboxing, rate limits, and auditing are enforced by the surrounding system.
 
 ## 7-Capability Autonomous Agent Architecture
 
