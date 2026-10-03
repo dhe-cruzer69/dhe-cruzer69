@@ -10,163 +10,238 @@ Building **local-first AI infrastructure and agent systems**: secure runtimes, t
 
 ---
 
-## Flagship (Pin These)
+## Ecosystem map
 
-| Project | Role | Status |
-|---------|------|--------|
-| [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Control plane — local-first, provider-agnostic agent runtime with policy, MCP, routing, audit, autofix | Active |
-| [**x4-fleet**](https://github.com/dhe-cruzer69/x4-fleet) | Self-healing fleet: inventory, nightly audit, evidence ledger, auto-issue on staleness/CI fail | **New — Live** |
-| [**x4-agents**](https://github.com/dhe-cruzer69/x4-agents) | Secure multi-agent orchestration — task graphs, sandboxed tools, approvals, memory | Active |
-| [**x4-core**](https://github.com/dhe-cruzer69/x4-core) | Shared runtime primitives, config, logging, events, telemetry, plugin system | Active |
-| [**x4-evidence**](https://github.com/dhe-cruzer69/x4-evidence) | Evidence ledger and verification engine (`OBSERVED` → `VALIDATED` / `UNKNOWN`) | Active |
-| [**x4-autofix**](https://github.com/dhe-cruzer69/x4-autofix) | Policy-gated autofix and recovery loops (Level 0–3) | **New — Live** |
+```mermaid
+flowchart TB
+  subgraph PROFILE["dhe-cruzer69"]
+    README[Profile README]
+  end
 
----
+  subgraph CP["Control Plane"]
+    BEAST[x4-beast]
+    CORE[x4-core]
+    APPROVAL[x4-approval]
+    ACBEAST[ariexcore-beast-mode]
+    CTRL[ariexcore-control-plane]
+  end
 
-## New Public Repos (Oct 2026)
+  subgraph FLEET["Fleet & Healing"]
+    FLEETR[x4-fleet]
+    FOPS[ariexcore-fleet-ops]
+    AUTOFIX[x4-autofix]
+    AFIX[ariexcore-autofix-engine]
+  end
 
-High-signal, polished scaffolds aligned with current trending agent infrastructure:
+  subgraph EV["Evidence & Eval"]
+    EVID[x4-evidence]
+    AEV[ariexcore-evidence]
+    EVAL[x4-eval-harness]
+    AEVAL[ariexcore-eval-suite]
+  end
 
-| Repo | Purpose |
-|------|---------|
-| [**x4-fleet**](https://github.com/dhe-cruzer69/x4-fleet) | Self-healing fleet inventory + nightly audit + metrics |
-| [**x4-context**](https://github.com/dhe-cruzer69/x4-context) | Context compression & persistent session memory |
-| [**x4-harness**](https://github.com/dhe-cruzer69/x4-harness) | Multi-agent harness (shared context, roles, adaptive memory) |
-| [**x4-autofix**](https://github.com/dhe-cruzer69/x4-autofix) | Policy-gated autofix & recovery loops |
-| [**x4-sec-action**](https://github.com/dhe-cruzer69/x4-sec-action) | GitHub Action for agent security scanner (SARIF) |
-| [**x4-skills-hub**](https://github.com/dhe-cruzer69/x4-skills-hub) | Verified skills registry + 5 seed MCP skills |
-| [**x4-memory-core**](https://github.com/dhe-cruzer69/x4-memory-core) | Multi-layer persistent agent memory (working / episodic / semantic) |
-| [**x4-mcp-prod**](https://github.com/dhe-cruzer69/x4-mcp-prod) | Production MCP gateway (auth, rate limits, audit) |
-| [**x4-eval-harness**](https://github.com/dhe-cruzer69/x4-eval-harness) | Evidence-first evaluation harness |
-| [**x4-agent-router**](https://github.com/dhe-cruzer69/x4-agent-router) | Intelligent model & tool router with multi-dimension scoring |
+  subgraph AG["Agents"]
+    AGENTS[x4-agents]
+    HARNESS[x4-harness]
+    AHARN[ariexcore-multi-agent-harness]
+    ORCH[x4-orchestrator]
+  end
 
----
+  subgraph MEM["Memory & Context"]
+    MEMR[x4-memory / x4-memory-core]
+    AMEM[ariexcore-agent-memory]
+    CTX[x4-context]
+    ACTX[ariexcore-context-engine]
+  end
 
-## Clean X4 Short-Name Family
+  subgraph TOOLS["MCP • Skills • Router • Runtime"]
+    MCP[x4-mcp / x4-mcp-prod]
+    AMCP[ariexcore-mcp-gateway]
+    SKILLS[x4-skills / x4-skills-hub]
+    ASKILL[ariexcore-skill-registry]
+    ROUTER[x4-router-score / x4-agent-router]
+    AROUT[ariexcore-model-router]
+    RUNTIME[x4-runtime]
+    SAND[x4-sandbox]
+    ASAND[ariexcore-sandbox-runtime]
+  end
 
-Canonical short names only. No multi-word bloat.
+  subgraph SEC["Security & Observability"]
+    SEC[x4-sec / x4-sec-action]
+    ASEC[ariexcore-sec-action]
+    OBS[x4-obs]
+    AOBS[ariexcore-observability]
+  end
 
-| Repo | Purpose |
-|------|---------|
-| **x4-beast** | Flagship control plane + autonomous runtime |
-| **x4-fleet** | Self-healing data-collection & fleet core |
-| **x4-core** | Invariant runtime / foundation |
-| **x4-ai** | Provider-agnostic AI/model layer |
-| **x4-agents** | Agent runtime & multi-agent orchestration |
-| **x4-mcp** / **x4-mcp-prod** | MCP / tool integration gateway |
-| **x4-skills** / **x4-skills-hub** | SkillHub / verified skill contracts |
-| **x4-runtime** | Local-first model runtime (hardware-aware) |
-| **x4-router-score** / **x4-agent-router** | Intelligent model & tool router |
-| **x4-orchestrator** | Multi-agent coordinator |
-| **x4-approval** | Policy / approval gates |
-| **x4-evidence** | Evidence & verification |
-| **x4-obs** | Telemetry & observability |
-| **x4-sec** / **x4-sec-action** | Security scanner (skills, hooks, MCP, SARIF) |
-| **x4-sandbox** | Secure sandboxed tool execution |
-| **x4-memory** / **x4-memory-core** | Persistent multi-layer agent memory |
-| **x4-research** | Evidence-first research agent |
-| **x4-context** | Context compression |
-| **x4-harness** | Multi-agent harness |
-| **x4-autofix** | Recovery & autofix |
-| **x4-eval-harness** | Evaluation harness |
-
-All other empty `x4-*` stubs and failed experiments are scheduled for removal.
-
----
-
-## 7-Capability Autonomous Agent Architecture
-
-| # | Capability | Core mechanism | Success criterion |
-|---|------------|----------------|-------------------|
-| 1 | Reliable autonomous execution | Planner + executor + retry/recovery + autofix | Goal completed across tools |
-| 2 | Verification before success | Tests + inspection + evidence ledger | No PASS without evidence |
-| 3 | Secure tools & credentials | Sandbox + least privilege + policy gates | Unsafe actions blocked |
-| 4 | Persistent context & memory | State store + project memory + history | Correct resume of work |
-| 5 | Multi-agent orchestration | Delegation + specialists + coordinator | Effective decomposition |
-| 6 | Intelligent routing | Capability / cost / latency / reliability | Best option selected dynamically |
-| 7 | Human-in-the-loop control | Approval gates + uncertainty + escalation | High-impact actions gated |
-
-**Key principle:** Never equate execution with success.
-
-```text
-INTENT → PLAN → POLICY → EXECUTE → OBSERVE → VERIFY → EVIDENCE
-                                                      │
-                                         ┌────────────┼────────────┐
-                                         ▼            ▼            ▼
-                                       PASS        UNKNOWN        FAIL
-                                         │            │            │
-                                      RELEASE    HUMAN REVIEW   RECOVER / AUTOFIX
+  README --> CP
+  CP --> FLEET
+  CP --> AG
+  FLEET --> EV
+  FLEET --> AUTOFIX
+  AG --> MEM
+  AG --> TOOLS
+  TOOLS --> SEC
+  EV --> SEC
+  APPROVAL --> CP
 ```
 
 ---
 
-## Beast Mode Features (Current)
+## Flagship (pin these)
 
-- **Hybrid local/cloud** — run fully local or fall back to cloud providers with policy control
-- **Autofixing tools** — detect, propose, and (when authorized) apply repairs
-- **Evidence-first** — every claim must be backed by observed evidence
-- **Policy-gated autonomy** — Level 0–3 controls (Observe → Assist → Governed Autopilot → Never)
-- **MCP-native** — first-class Model Context Protocol support
-- **Security by default** — sandbox, least privilege, secret scanning, SARIF output
-- **Self-healing fleet** — `x4-fleet` nightly inventory + auto-issue on staleness
-- **Short-name namespace** — clean `x4-*` family only
+| Project | Role | Status |
+|---------|------|--------|
+| [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Control plane — local-first, provider-agnostic agent runtime with policy, MCP, routing, audit, autofix | Active |
+| [**x4-fleet**](https://github.com/dhe-cruzer69/x4-fleet) | Self-healing fleet: inventory, nightly audit, evidence ledger, auto-issue on staleness/CI fail | **Live + CI** |
+| [**x4-agents**](https://github.com/dhe-cruzer69/x4-agents) | Secure multi-agent orchestration — task graphs, sandboxed tools, approvals, memory | Active |
+| [**x4-approval**](https://github.com/dhe-cruzer69/x4-approval) | Human-in-the-loop approval gates & risk-based autonomy controls for high-impact actions | Active |
+| [**x4-evidence**](https://github.com/dhe-cruzer69/x4-evidence) | Evidence ledger (`OBSERVED` → `VALIDATED` / `UNKNOWN`) — no PASS without evidence | Active |
+| [**x4-autofix**](https://github.com/dhe-cruzer69/x4-autofix) | Policy-gated autofix and recovery loops (Level 0–3) | Live |
+| [**x4-sec-action**](https://github.com/dhe-cruzer69/x4-sec-action) | GitHub Action for agent security scanner (SARIF) | Live |
 
 ---
 
-## Engineering Principles
+## Evidence ledger (explained)
 
-- Security by default • Least privilege • Explicit high-risk approval  
-- Local-first • Provider-agnostic • Observable & auditable  
-- Evidence over claims • `UNKNOWN` stays `UNKNOWN`  
-- No fake PASS • No secrets in repos • Prefer upstream contribution  
-- Modules first. New repositories only when justified.  
-- Eco-friendly profile: only completed, high-quality, integrated repos remain.
+The evidence ledger is the single source of truth for **whether a claim is actually true**.
 
-## Quality Gate
+```text
+OBSERVED → CORRELATED → HYPOTHESIS → VALIDATED
+                              ↓
+                           UNKNOWN / FAIL
+```
 
-A change is ready only when the required checks actually pass:  
-install • unit tests • integration tests • lint • typecheck • secret scan • permissions • documentation • clean-machine start • release build.
+| State | Meaning |
+|-------|---------|
+| **OBSERVED** | Raw fact recorded (log line, API response, test output, inventory row) |
+| **CORRELATED** | Multiple observations linked to the same claim |
+| **HYPOTHESIS** | Proposed explanation or fix; not yet proven |
+| **VALIDATED** | Claim backed by sufficient evidence; may PASS |
+| **UNKNOWN** | Evidence missing or incomplete — **never treated as green** |
+| **FAIL** | Evidence contradicts the claim |
 
-One unresolved required gate → **UNKNOWN**, not green.
+**Rules**
+- Execution ≠ success. A green CI run is only VALIDATED if the checks that matter actually ran and passed.
+- Fleet inventory writes OBSERVED entries every night (`x4-fleet`).
+- Autofix may only act on VALIDATED findings inside policy Level 0–2.
+- Level 3 actions (delete, secrets, force-push) always require human approval via **x4-approval**.
 
-## Autonomy Levels
+Primary repos: [x4-evidence](https://github.com/dhe-cruzer69/x4-evidence) · [ariexcore-evidence](https://github.com/dhe-cruzer69/ariexcore-evidence) · schema in [x4-fleet/data/evidence](https://github.com/dhe-cruzer69/x4-fleet).
+
+---
+
+## Full polished catalog (detailed)
+
+### Control plane
+| Repo | Description |
+|------|-------------|
+| [x4-beast](https://github.com/dhe-cruzer69/x4-beast) | Flagship local-first, provider-agnostic AI agent infrastructure with policy controls, MCP, model routing, audit, and the 7-capability autonomous architecture. |
+| [ariexcore-beast-mode](https://github.com/dhe-cruzer69/ariexcore-beast-mode) | Org-branded Beast Mode control-plane scaffold for ARIEXCORE-69X transfer. |
+| [ariexcore-control-plane](https://github.com/dhe-cruzer69/ariexcore-control-plane) | Policy engine, autonomy levels 0–3, fleet contract schema, evidence gates. |
+| [x4-core](https://github.com/dhe-cruzer69/x4-core) | Shared runtime primitives: config, logging, events, telemetry, plugin system. |
+| [**x4-approval**](https://github.com/dhe-cruzer69/x4-approval) | **Human-in-the-loop approval gates and risk-based autonomy controls.** High-impact actions (deletes, secrets, production changes, merges) must pass an approval gate before execution. Implements Level 3 “Never autonomous” enforcement and escalates UNKNOWN decisions to a human. |
+
+### Fleet & self-healing
+| Repo | Description |
+|------|-------------|
+| [x4-fleet](https://github.com/dhe-cruzer69/x4-fleet) | Self-healing fleet core: GitHub inventory collector, Actions health, nightly audit (02:00 IST), weekly report, evidence snapshots, CI (pytest/ruff/mypy), autonomy policies. |
+| [ariexcore-fleet-ops](https://github.com/dhe-cruzer69/ariexcore-fleet-ops) | Organization-level fleet operations twin (inventory, audit, reconciliation). |
+| [x4-autofix](https://github.com/dhe-cruzer69/x4-autofix) | Policy-gated autofix: detect failures, propose repairs, apply trivial fixes only when Level 2 is authorized. |
+| [ariexcore-autofix-engine](https://github.com/dhe-cruzer69/ariexcore-autofix-engine) | Org autofix engine with sample findings and level gates. |
+
+### Evidence & evaluation
+| Repo | Description |
+|------|-------------|
+| [x4-evidence](https://github.com/dhe-cruzer69/x4-evidence) | Evidence ledger and verification engine. No PASS without evidence. |
+| [ariexcore-evidence](https://github.com/dhe-cruzer69/ariexcore-evidence) | Canonical ARIEXCORE evidence ledger. |
+| [x4-eval-harness](https://github.com/dhe-cruzer69/x4-eval-harness) | Evidence-first evaluation harness for agents (claim graphs, scoring). |
+| [ariexcore-eval-suite](https://github.com/dhe-cruzer69/ariexcore-eval-suite) | Org evaluation suite with sample claims. |
+
+### Agents & orchestration
+| Repo | Description |
+|------|-------------|
+| [x4-agents](https://github.com/dhe-cruzer69/x4-agents) | Secure multi-agent orchestration runtime — task graphs, sandboxed tools, approvals, memory. |
+| [x4-harness](https://github.com/dhe-cruzer69/x4-harness) | Multi-agent harness with shared context, role assignment, adaptive memory. |
+| [ariexcore-multi-agent-harness](https://github.com/dhe-cruzer69/ariexcore-multi-agent-harness) | Org multi-agent harness (planner / implementer / reviewer / security roles). |
+| [x4-orchestrator](https://github.com/dhe-cruzer69/x4-orchestrator) | Multi-agent coordinator with specialist delegation, validation, recovery loops. |
+
+### Memory & context
+| Repo | Description |
+|------|-------------|
+| [x4-memory](https://github.com/dhe-cruzer69/x4-memory) / [x4-memory-core](https://github.com/dhe-cruzer69/x4-memory-core) | Multi-layer persistent agent memory (working, episodic, semantic). |
+| [ariexcore-agent-memory](https://github.com/dhe-cruzer69/ariexcore-agent-memory) | Org memory store with sample trajectories. |
+| [x4-context](https://github.com/dhe-cruzer69/x4-context) | Context compression and session memory for long-horizon agents. |
+| [ariexcore-context-engine](https://github.com/dhe-cruzer69/ariexcore-context-engine) | Org context engine with compression metrics. |
+
+### MCP, skills, routing, runtime
+| Repo | Description |
+|------|-------------|
+| [x4-mcp](https://github.com/dhe-cruzer69/x4-mcp) / [x4-mcp-prod](https://github.com/dhe-cruzer69/x4-mcp-prod) | Production MCP gateway: registry, auth, permissions, schema validation, rate limits. |
+| [ariexcore-mcp-gateway](https://github.com/dhe-cruzer69/ariexcore-mcp-gateway) | Org production MCP gateway. |
+| [x4-mcpgen](https://github.com/dhe-cruzer69/x4-mcpgen) | Generate tested, secure-by-default MCP server scaffolds. |
+| [x4-skills](https://github.com/dhe-cruzer69/x4-skills) / [x4-skills-hub](https://github.com/dhe-cruzer69/x4-skills-hub) | Verified AI agent skills registry + seed MCP skills. |
+| [ariexcore-skill-registry](https://github.com/dhe-cruzer69/ariexcore-skill-registry) | Org skill registry with 5 seed skills. |
+| [x4-router-score](https://github.com/dhe-cruzer69/x4-router-score) / [x4-agent-router](https://github.com/dhe-cruzer69/x4-agent-router) | Intelligent model & tool router (capability / cost / latency / reliability). |
+| [ariexcore-model-router](https://github.com/dhe-cruzer69/ariexcore-model-router) | Org model router with sample scores. |
+| [x4-runtime](https://github.com/dhe-cruzer69/x4-runtime) | Local-first model runtime with hardware-aware routing. |
+| [x4-sandbox](https://github.com/dhe-cruzer69/x4-sandbox) / [ariexcore-sandbox-runtime](https://github.com/dhe-cruzer69/ariexcore-sandbox-runtime) | Secure sandboxed tool execution (least privilege, audit). |
+
+### Security & observability
+| Repo | Description |
+|------|-------------|
+| [x4-sec](https://github.com/dhe-cruzer69/x4-sec) | AI agent security scanner — skills, hooks, MCP, SARIF. |
+| [x4-sec-action](https://github.com/dhe-cruzer69/x4-sec-action) | GitHub Action packaging for the scanner (Marketplace-ready). |
+| [ariexcore-sec-action](https://github.com/dhe-cruzer69/ariexcore-sec-action) | Org security Action. |
+| [x4-obs](https://github.com/dhe-cruzer69/x4-obs) | Agent telemetry and evidence receipts (local-first). |
+| [ariexcore-observability](https://github.com/dhe-cruzer69/ariexcore-observability) | Org observability + sample receipts. |
+
+### Other active short names
+| Repo | Description |
+|------|-------------|
+| [x4-ai](https://github.com/dhe-cruzer69/x4-ai) | Provider-agnostic AI / model abstraction layer. |
+| [x4-research](https://github.com/dhe-cruzer69/x4-research) | Evidence-first research agent (claim graphs, source ranking). |
+
+---
+
+## Autonomy levels
 
 | Level | Name | Allowed |
 |-------|------|---------|
 | 0 | Observe | Read → inspect → report |
 | 1 | Assist | Read → plan → patch → open PR |
 | 2 | Governed Autopilot | Plan → policy → execute → verify → recover / autofix (hard limits) |
-| 3 | Never autonomous | Delete, credential exposure, production destructive, unapproved merge, financial, policy bypass |
+| 3 | Never autonomous | Delete, secrets, production destructive, unapproved merge, financial — **gated by x4-approval** |
 
-Default mode: **Observe / Assist**. Autopilot only inside explicit policy bounds.
+Default: **Observe / Assist**. Autopilot only inside explicit policy bounds.
 
 ---
 
-## Automation Status (Profile Cleanup)
+## Quality gate
+
+A change is ready only when required checks pass: install • unit • integration • lint • typecheck • secret scan • permissions • docs • clean-machine start • release build.
+
+**One unresolved required gate → UNKNOWN, not green.**
+
+---
+
+## Automation status
 
 | Step | Status |
 |------|--------|
-| Read-only inventory | ✅ Complete (130 repos) |
-| Classification (KEEP / RENAME / MERGE / DELETE) | ✅ Complete |
-| DELETE_CANDIDATES list generated | ✅ ~55–85 empty/failed stubs identified |
-| 10 new high-quality public repos created | ✅ Live (Oct 3 2026) |
-| x4-fleet self-healing core | ✅ Scaffold + workflows pushed |
-| Profile README updated | ✅ This commit |
-| Human review of delete/archive list | ⏳ Pending your approval |
-| Pin powerful repos | ⏳ Manual (GitHub UI) — recommend: x4-beast, x4-fleet, x4-agents, x4-evidence, x4-autofix, x4-sec-action |
+| Inventory + classification | ✅ |
+| Polished public repos (x4-* + ariexcore-*) | ✅ Live |
+| x4-fleet CI + collectors + evidence schema | ✅ |
+| Profile README (this file) | ✅ |
+| Org transfer (ARIEXCORE-69X) | ⏳ Manual (token lacks org admin) |
+| Archive empty stubs | ⏳ Pending your approval |
 | Twin-pair merges | ⏳ Pending |
-| Final verification + receipt | ⏳ After deletions |
+| Pin flagship repos | ⏳ GitHub UI |
 
 ---
 
-## Roadmap
+## Org note
 
-```text
-Local AI → Agents → Evaluation → MCP / Tool Security → Routing → Observability → Autofix → Fleet → Products
-```
-
-**Build order**  
-`x4-beast` (control plane) → `x4-fleet` (inventory + self-heal) → Evidence Ledger → Policy Engine → Verification → Autopilot + Autofix → selective consolidation of stubs.
+[ARIEXCORE-69X](https://github.com/ARIEXCORE-69X) currently holds `literate-spoon` only. Polished `ariexcore-*` repos live under the personal account and are ready to **Transfer** into the org once ownership/admin is confirmed.
 
 ---
 
