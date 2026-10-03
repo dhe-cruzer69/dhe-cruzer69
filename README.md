@@ -15,11 +15,30 @@ Building **local-first AI infrastructure and agent systems**: secure runtimes, t
 | Project | Role | Status |
 |---------|------|--------|
 | [**x4-beast**](https://github.com/dhe-cruzer69/x4-beast) | Control plane — local-first, provider-agnostic agent runtime with policy, MCP, routing, audit, autofix | Active |
+| [**x4-fleet**](https://github.com/dhe-cruzer69/x4-fleet) | Self-healing fleet: inventory, nightly audit, evidence ledger, auto-issue on staleness/CI fail | **New — Live** |
 | [**x4-agents**](https://github.com/dhe-cruzer69/x4-agents) | Secure multi-agent orchestration — task graphs, sandboxed tools, approvals, memory | Active |
 | [**x4-core**](https://github.com/dhe-cruzer69/x4-core) | Shared runtime primitives, config, logging, events, telemetry, plugin system | Active |
-| [**x4-mcp**](https://github.com/dhe-cruzer69/x4-mcp) | Production MCP gateway — registry, auth, permissions, schema validation, rate limits | Active |
-| [**x4-approval**](https://github.com/dhe-cruzer69/x4-approval) | Human-in-the-loop approval gates & risk-based autonomy controls | Active |
 | [**x4-evidence**](https://github.com/dhe-cruzer69/x4-evidence) | Evidence ledger and verification engine (`OBSERVED` → `VALIDATED` / `UNKNOWN`) | Active |
+| [**x4-autofix**](https://github.com/dhe-cruzer69/x4-autofix) | Policy-gated autofix and recovery loops (Level 0–3) | **New — Live** |
+
+---
+
+## New Public Repos (Oct 2026)
+
+High-signal, polished scaffolds aligned with current trending agent infrastructure:
+
+| Repo | Purpose |
+|------|---------|
+| [**x4-fleet**](https://github.com/dhe-cruzer69/x4-fleet) | Self-healing fleet inventory + nightly audit + metrics |
+| [**x4-context**](https://github.com/dhe-cruzer69/x4-context) | Context compression & persistent session memory |
+| [**x4-harness**](https://github.com/dhe-cruzer69/x4-harness) | Multi-agent harness (shared context, roles, adaptive memory) |
+| [**x4-autofix**](https://github.com/dhe-cruzer69/x4-autofix) | Policy-gated autofix & recovery loops |
+| [**x4-sec-action**](https://github.com/dhe-cruzer69/x4-sec-action) | GitHub Action for agent security scanner (SARIF) |
+| [**x4-skills-hub**](https://github.com/dhe-cruzer69/x4-skills-hub) | Verified skills registry + 5 seed MCP skills |
+| [**x4-memory-core**](https://github.com/dhe-cruzer69/x4-memory-core) | Multi-layer persistent agent memory (working / episodic / semantic) |
+| [**x4-mcp-prod**](https://github.com/dhe-cruzer69/x4-mcp-prod) | Production MCP gateway (auth, rate limits, audit) |
+| [**x4-eval-harness**](https://github.com/dhe-cruzer69/x4-eval-harness) | Evidence-first evaluation harness |
+| [**x4-agent-router**](https://github.com/dhe-cruzer69/x4-agent-router) | Intelligent model & tool router with multi-dimension scoring |
 
 ---
 
@@ -30,21 +49,26 @@ Canonical short names only. No multi-word bloat.
 | Repo | Purpose |
 |------|---------|
 | **x4-beast** | Flagship control plane + autonomous runtime |
+| **x4-fleet** | Self-healing data-collection & fleet core |
 | **x4-core** | Invariant runtime / foundation |
 | **x4-ai** | Provider-agnostic AI/model layer |
 | **x4-agents** | Agent runtime & multi-agent orchestration |
-| **x4-mcp** | MCP / tool integration gateway |
-| **x4-skills** | SkillHub / verified skill contracts |
+| **x4-mcp** / **x4-mcp-prod** | MCP / tool integration gateway |
+| **x4-skills** / **x4-skills-hub** | SkillHub / verified skill contracts |
 | **x4-runtime** | Local-first model runtime (hardware-aware) |
-| **x4-router-score** | Intelligent model & tool router |
+| **x4-router-score** / **x4-agent-router** | Intelligent model & tool router |
 | **x4-orchestrator** | Multi-agent coordinator |
 | **x4-approval** | Policy / approval gates |
 | **x4-evidence** | Evidence & verification |
 | **x4-obs** | Telemetry & observability |
-| **x4-sec** | Security scanner (skills, hooks, MCP, SARIF) |
+| **x4-sec** / **x4-sec-action** | Security scanner (skills, hooks, MCP, SARIF) |
 | **x4-sandbox** | Secure sandboxed tool execution |
-| **x4-memory** | Persistent multi-layer agent memory |
+| **x4-memory** / **x4-memory-core** | Persistent multi-layer agent memory |
 | **x4-research** | Evidence-first research agent |
+| **x4-context** | Context compression |
+| **x4-harness** | Multi-agent harness |
+| **x4-autofix** | Recovery & autofix |
+| **x4-eval-harness** | Evaluation harness |
 
 All other empty `x4-*` stubs and failed experiments are scheduled for removal.
 
@@ -84,6 +108,7 @@ INTENT → PLAN → POLICY → EXECUTE → OBSERVE → VERIFY → EVIDENCE
 - **Policy-gated autonomy** — Level 0–3 controls (Observe → Assist → Governed Autopilot → Never)
 - **MCP-native** — first-class Model Context Protocol support
 - **Security by default** — sandbox, least privilege, secret scanning, SARIF output
+- **Self-healing fleet** — `x4-fleet` nightly inventory + auto-issue on staleness
 - **Short-name namespace** — clean `x4-*` family only
 
 ---
@@ -121,13 +146,15 @@ Default mode: **Observe / Assist**. Autopilot only inside explicit policy bounds
 
 | Step | Status |
 |------|--------|
-| Read-only inventory | ✅ Complete |
+| Read-only inventory | ✅ Complete (130 repos) |
 | Classification (KEEP / RENAME / MERGE / DELETE) | ✅ Complete |
-| DELETE_CANDIDATES list generated | ✅ 85 empty/failed repos identified |
-| Profile README updated (Beast Mode) | ✅ This commit |
-| x4-beast enrichment | 🔄 In progress |
-| Human review of delete list | ⏳ Pending your approval |
-| Pin powerful repos | ⏳ Manual (GitHub UI) |
+| DELETE_CANDIDATES list generated | ✅ ~55–85 empty/failed stubs identified |
+| 10 new high-quality public repos created | ✅ Live (Oct 3 2026) |
+| x4-fleet self-healing core | ✅ Scaffold + workflows pushed |
+| Profile README updated | ✅ This commit |
+| Human review of delete/archive list | ⏳ Pending your approval |
+| Pin powerful repos | ⏳ Manual (GitHub UI) — recommend: x4-beast, x4-fleet, x4-agents, x4-evidence, x4-autofix, x4-sec-action |
+| Twin-pair merges | ⏳ Pending |
 | Final verification + receipt | ⏳ After deletions |
 
 ---
@@ -135,11 +162,11 @@ Default mode: **Observe / Assist**. Autopilot only inside explicit policy bounds
 ## Roadmap
 
 ```text
-Local AI → Agents → Evaluation → MCP / Tool Security → Routing → Observability → Autofix → Products
+Local AI → Agents → Evaluation → MCP / Tool Security → Routing → Observability → Autofix → Fleet → Products
 ```
 
 **Build order**  
-`x4-beast` (control plane) → Fleet Contract → Evidence Ledger → Policy Engine → Verification → Autopilot + Autofix → FleetView → selective consolidation.
+`x4-beast` (control plane) → `x4-fleet` (inventory + self-heal) → Evidence Ledger → Policy Engine → Verification → Autopilot + Autofix → selective consolidation of stubs.
 
 ---
 
