@@ -4,7 +4,8 @@ from unittest.mock import Mock, patch
 import requests
 from scripts.update_profile_data import (
     ACTIVITY_END, ACTIVITY_START, DATA_END, DATA_START,
-    check_production, format_recent_activity, replace_marked_section,
+    build_profile_section, check_production, fetch_repositories,
+    format_recent_activity, replace_marked_section,
 )
 class ReplaceSectionTests(unittest.TestCase):
     def test_replaces_only_content_between_markers(self):
