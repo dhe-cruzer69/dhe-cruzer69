@@ -185,7 +185,7 @@ def check_production(url: str) -> tuple[str, str]:
 def format_number(value: Any) -> str:
     return f"{value:,}" if isinstance(value, int) and value >= 0 else "unknown"
 
-def build_profile_section(token: str, username: str, user: dict[str, Any], repositories: list[dict[str, Any]], production_url: str) -> str:
+def build_profile_section(token: str, username: str, user: dict[str, Any], repositories: list[dict[str, Any]], production_url: str, production_result: tuple[str, str] | None = None) -> str:
     owned_originals = [
         repo for repo in repositories
         if not repo.get("fork", False)
@@ -201,7 +201,7 @@ def build_profile_section(token: str, username: str, user: dict[str, Any], repos
     release_tag = str(release.get("tag_name", "unknown")) if release else "No published release"
     release_url = str(release.get("html_url", "")) if release else ""
     release_display = f"[{release_tag}]({release_url})" if release_url.startswith("https://github.com/") else release_tag
-    production_status, production_version = check_production(production_url)
+    production_status, production_version = production_result if production_result is not None else check_production(production_url)
     production_detail = production_status + (f" — version {production_version}" if production_version else "")
     production_url_display = production_url if production_status != "Invalid URL configuration" else "Invalid URL configuration"
     refreshed = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -250,7 +250,8 @@ def main() -> int:
         user = fetch_user(token, username)
         repositories = fetch_repositories(token, username)
         events = fetch_public_events(token, username)
-        section = build_profile_section(token, username, user, repositories, production_url)
+        production_result = check_production(production_url)
+        section = build_profile_section(token, username, user, repositories, production_url, production_result)
         original = README_PATH.read_text(encoding="utf-8")
         updated = replace_marked_section(original, ACTIVITY_START, ACTIVITY_END, format_recent_activity(events))
         updated = replace_marked_section(updated, DATA_START, DATA_END, section)
@@ -259,11 +260,8 @@ def main() -> int:
             return 0
         README_PATH.write_text(updated, encoding="utf-8")
         print("README updated with public GitHub metrics and activity.")
-        if production_url:
-            status, version = check_production(production_url)
-            print(f"Production readiness: {status}" + (f" (version {version})" if version else ""))
-        else:
-            print("Production readiness: not checked (X4_PRODUCTION_URL is not configured).")
+        status, version = production_result
+        print(f"Production readiness: {status}" + (f" (version {version})" if version else ""))
         return 0
     except (GitHubAPIError, requests.RequestException, RuntimeError, OSError) as exc:
         print(f"ERROR: profile update failed: {exc}", file=sys.stderr)
