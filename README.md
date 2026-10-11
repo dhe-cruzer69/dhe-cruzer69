@@ -13,6 +13,9 @@ Building **local-first AI infrastructure and agent systems**: secure runtimes, t
 <!--START_SECTION:activity-->
 <!--END_SECTION:activity-->
 
+<!-- X4_PROFILE_DATA_START -->
+<!-- X4_PROFILE_DATA_END -->
+
 ---
 
 ## Ecosystem map
