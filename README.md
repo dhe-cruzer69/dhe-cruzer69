@@ -8,6 +8,11 @@ Building **local-first AI infrastructure and agent systems**: secure runtimes, t
 
 **Beast Mode active** — hybrid local/cloud, autofixing tools, policy-gated autonomy, evidence-first execution.
 
+## Recent Activity
+
+<!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
+
 ---
 
 ## Ecosystem map
