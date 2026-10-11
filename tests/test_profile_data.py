@@ -31,6 +31,32 @@ class ActivityTests(unittest.TestCase):
         result = format_recent_activity([{"type": "PushEvent", "repo": {"name": "dhe-cruzer69/x4-core"}}])
         self.assertIn("https://github.com/dhe-cruzer69/x4-core", result)
         self.assertIn("pushed commits", result)
+class DataCollectionTests(unittest.TestCase):
+    @patch("scripts.update_profile_data.get_json")
+    def test_repository_pagination_has_no_fixed_cap(self, get_json):
+        get_json.side_effect = [
+            [{"id": i} for i in range(100)],
+            [{"id": 101}],
+        ]
+        self.assertEqual(len(fetch_repositories("token", "owner")), 101)
+        self.assertEqual(get_json.call_count, 2)
+
+    @patch("scripts.update_profile_data.check_production", return_value=("Not configured", ""))
+    @patch("scripts.update_profile_data.fetch_latest_release", return_value=None)
+    @patch("scripts.update_profile_data.fetch_workflow_status", side_effect=["success", "success"])
+    def test_profile_section_passes_token_to_data_fetchers(self, ci, release, health):
+        repos = [{
+            "name": "x4-core", "fork": False, "archived": False,
+            "owner": {"login": "dhe-cruzer69"},
+            "stargazers_count": 2, "forks_count": 1,
+        }]
+        user = {"public_repos": 1, "followers": 3}
+        result = build_profile_section("test-token", "dhe-cruzer69", user, repos, "")
+        self.assertIn("Real-Time X4 Portfolio", result)
+        self.assertIn("success", result)
+        self.assertEqual(ci.call_args_list[0].args[0], "test-token")
+        self.assertEqual(ci.call_args_list[1].args[0], "test-token")
+
 class ProductionCheckTests(unittest.TestCase):
     def test_blank_url_is_not_live(self):
         self.assertEqual(check_production(""), ("Not configured", ""))
