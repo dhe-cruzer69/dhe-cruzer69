@@ -50,7 +50,7 @@ for REPO in "${REPOS[@]}"; do
 
   CI_STATUS="unknown"
   if [[ -n "$DEFAULT_BRANCH" ]]; then
-    if RUNS_JSON="$(gh api "repos/$FULL/actions/runs" -f "branch=$DEFAULT_BRANCH" -F per_page=1 2>/dev/null)"; then
+    if RUNS_JSON="$(gh api "repos/$FULL/actions/workflows/ci.yml/runs" -f "branch=$DEFAULT_BRANCH" -F per_page=1 2>/dev/null)"; then
       CI_STATUS="$(jq -r '
         if (.workflow_runs | length) == 0 then "no-runs"
         else (.workflow_runs[0].conclusion // .workflow_runs[0].status // "unknown")
