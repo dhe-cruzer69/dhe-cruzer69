@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update recent public GitHub activity
-        uses: jamesgeorge007/github-activity-readme@v0.5.0
+        uses: jamesgeorge007/github-activity-readme@4aefbfa1c222d70537dc6a02f0519266aab2b1ea
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
