@@ -87,6 +87,80 @@ flowchart TB
 
 ---
 
+## APEX Composite Ecosystem Map (reviewable target)
+
+> **Status:** Proposed relationship map, not a verified dependency graph. The `x4-spec` repository could not be resolved through the connected GitHub API at the time of this change; its node is marked unresolved. Verify repository existence, exported interfaces, and actual imports before treating an edge as implemented.
+
+```mermaid
+flowchart TB
+  subgraph Governance["Governance and workflow"]
+    SPEC["x4-spec — unresolved"]
+    FLEET["x4-fleet"]
+    LAB["workflow-lab"]
+    SCAFFOLD["project-scaffold"]
+    ARISE["arise-v9"]
+  end
+  subgraph Runtime["Runtime and orchestration"]
+    CORE["x4-core"]
+    BEAST["x4-beast"]
+    AGENTS["x4-agents"]
+    HARNESS["x4-harness"]
+    LOCAL["x4-local-ai-runtime"]
+    OMNI["omniforge"]
+    ARIEXUS["ariexus"]
+  end
+  subgraph Policy["Safety and evidence"]
+    SANDBOX["x4-sandbox"]
+    APPROVAL["x4-approval"]
+    AUTOFIX["x4-autofix"]
+    EVIDENCE["x4-evidence"]
+    CONTEXT["x4-context"]
+  end
+  subgraph Capabilities["Capability modules"]
+    SKILLS["x4-agent-skills-hub"]
+    AI["x4-ai"]
+    ROUTER["x4-router"]
+    RESEARCH["x4-research"]
+    MEMORY["x4-memory"]
+    MEMORYCORE["x4-memory-core"]
+    MCPG["x4-mcp-gateway"]
+    MCPPROD["x4-mcp-prod"]
+    MCPGEN["x4-mcpgen"]
+  end
+  subgraph Quality["Quality and observability"]
+    SCANNER["x4-ai-security-scanner"]
+    OBS["x4-agent-observability"]
+    EVAL["x4-eval"]
+    EVALH["x4-eval-harness"]
+  end
+  CORE -. "intended runtime dependency" .-> BEAST
+  CORE -. "intended orchestration dependency" .-> AGENTS
+  CORE -. "intended execution boundary" .-> SANDBOX
+  BEAST -. "candidate integration" .-> APPROVAL
+  BEAST -. "candidate scanning integration" .-> SCANNER
+  AGENTS -. "candidate skill lookup" .-> SKILLS
+  AGENTS -. "candidate telemetry" .-> OBS
+  AGENTS -. "candidate context" .-> CONTEXT
+  AGENTS -. "candidate research" .-> RESEARCH
+  AI -. "candidate provider selection" .-> ROUTER
+  MEMORYCORE -. "adapter contract candidate" .-> MEMORY
+  MCPGEN -. "candidate schema generation" .-> MCPG
+  MCPG -. "gateway-to-service candidate" .-> MCPPROD
+  APPROVAL -. "approval evidence candidate" .-> EVIDENCE
+  AUTOFIX -. "patch receipt candidate" .-> EVIDENCE
+  EVAL -. "score producer candidate" .-> EVALH
+  FLEET -. "audits repository state" .-> CORE
+  FLEET -. "audits repository state" .-> AGENTS
+  FLEET -. "audits repository state" .-> BEAST
+  SPEC -. "reusable workflow hub — unresolved" .-> LAB
+  style SPEC fill:#bf8700,color:#fff,stroke-dasharray:5 5
+  style CORE fill:#1a7f37,color:#fff
+  style BEAST fill:#1a7f37,color:#fff
+  style SANDBOX fill:#bf8700,color:#fff
+```
+
+**Legend:** solid repository names identify the requested roster; dashed edges are proposed relationships, not verified imports. Green marks flagship candidates; amber marks an unresolved or security-sensitive boundary. No deployment, test, or “five-star” quality claim is implied by this map.
+
 ## Flagship (pin these)
 
 | Project | Role | Status |
