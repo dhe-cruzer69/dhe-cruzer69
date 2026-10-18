@@ -29,20 +29,80 @@ I build developer infrastructure where agents are powerful by design but limited
 
 ```mermaid
 flowchart TB
-    USER[User / CLI / UI] --> ORCH[x4-agents · Orchestration]
-    ORCH --> POLICY[Policy + Risk Classification]
-    POLICY -->|Allowed| GATEWAY[x4-mcp-gateway · Tool Gateway]
-    POLICY -->|Approval required| HUMAN[Human Approval]
-    POLICY -->|Denied| AUDIT[Evidence + Audit]
-    HUMAN --> GATEWAY
-    CORE[x4-core · Shared Runtime] --> ORCH
-    CORE --> GATEWAY
-    GATEWAY --> SANDBOX[x4-sandbox · Policy-Gated Process]
-    SANDBOX --> AUDIT
-    EVAL[x4-eval-harness · Evaluation] -->|Pass / fail evidence| ORCH
-    REPAIR[x4-autofix · Proposed Patch] --> HUMAN
-    FLEET[x4-fleet · Read-Only Inventory] --> SCORE[0–100 Portfolio Scorecard]
-    SCORE --> HUMAN
+    subgraph CONTROL["Runtime and control plane"]
+        CORE[x4-core]
+        BEAST[x4-beast]
+        AGENTS[x4-agents]
+        SANDBOX[x4-sandbox]
+        APPROVAL[x4-approval]
+        AI[x4-ai]
+        ROUTER[x4-router]
+        LOCAL[x4-local-ai-runtime]
+    end
+    subgraph TOOLS["Tooling and integration"]
+        GATEWAY[x4-mcp-gateway]
+        MCPPROD[x4-mcp-prod]
+        MCPGEN[x4-mcpgen]
+        WORKFLOW[workflow-lab]
+        SKILLS[x4-agent-skills-hub]
+        SCAFFOLD[project-scaffold]
+    end
+    subgraph TRUST["Verification and fleet health"]
+        FLEET[x4-fleet]
+        AUTOFIX[x4-autofix]
+        EVIDENCE[x4-evidence]
+        EVALH[x4-eval-harness]
+        EVAL[x4-eval]
+        OBS[x4-agent-observability]
+        SCANNER[x4-ai-security-scanner]
+    end
+    subgraph STATE["Memory and research"]
+        MEMORY[x4-memory]
+        MEMORYCORE[x4-memory-core]
+        CONTEXT[x4-context]
+        RESEARCH[x4-research]
+        HARNESS[x4-harness]
+    end
+    subgraph MVP["MVPs and governance baselines"]
+        ARIEXUS[ariexus]
+        OMNI[omniforge]
+        ARISE[arise-v9]
+    end
+    SPEC["x4-spec — planned hub; not found in live inventory"]
+    CORE --> BEAST
+    CORE --> AGENTS
+    CORE --> AI
+    CORE --> MEMORY
+    AGENTS --> SKILLS
+    AGENTS --> HARNESS
+    AGENTS --> CONTEXT
+    AGENTS --> RESEARCH
+    AGENTS --> SANDBOX
+    AGENTS --> GATEWAY
+    BEAST --> APPROVAL
+    BEAST --> SCANNER
+    BEAST --> ROUTER
+    ROUTER --> LOCAL
+    GATEWAY --> MCPPROD
+    MCPGEN --> GATEWAY
+    WORKFLOW -. reusable workflows .-> SCAFFOLD
+    AUTOFIX --> EVIDENCE
+    SANDBOX --> EVIDENCE
+    AGENTS --> EVALH
+    EVALH --> EVAL
+    OBS --> EVIDENCE
+    MEMORYCORE --> MEMORY
+    FLEET -. read-only inventory and health .-> CORE
+    FLEET -. reads status .-> AGENTS
+    FLEET -. reads status .-> BEAST
+    ARIEXUS -. prototype lineage .-> AGENTS
+    OMNI -. local workbench .-> AI
+    ARISE -. governance baseline .-> SPEC
+    SPEC -. proposed shared workflow hub .-> WORKFLOW
+    classDef kernel fill:#16202a,stroke:#d89b32,color:#fff
+    classDef trust fill:#34251a,stroke:#d89b32,color:#fff
+    class CORE,BEAST,AGENTS kernel
+    class FLEET,EVIDENCE,EVALH,SCANNER trust
 ```
 
 ## Engineering rules
@@ -52,6 +112,10 @@ flowchart TB
 - **Evidence over adjectives:** link workflow runs, releases, test reports, deployment health, and source paths for claims.
 - **Honest maturity:** prototypes, governance baselines, and unimplemented controls are labeled clearly.
 - **Human approval:** archive/delete, production deploys, secret changes, and other high-impact actions require an explicit gate.
+
+## Architecture rollout
+
+Architecture diagrams have been committed to the existing target repositories’ default branches. **The planned `x4-spec` repository was not found in the live GitHub inventory (checked 2026-10-18)**, so it is marked as a proposed hub in the map rather than presented as a deployed repository. The detailed commit ledger and remaining blockers are tracked in [the X4 APEX deployment log](docs/X4-APEX-DEPLOYMENT-LOG.md).
 
 ## Portfolio quality contract
 
