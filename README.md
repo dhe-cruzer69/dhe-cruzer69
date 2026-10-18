@@ -89,12 +89,12 @@ flowchart TB
 
 ## APEX Composite Ecosystem Map (reviewable target)
 
-> **Status:** Proposed relationship map, not a verified dependency graph. The `x4-spec` repository could not be resolved through the connected GitHub API at the time of this change; its node is marked unresolved. Verify repository existence, exported interfaces, and actual imports before treating an edge as implemented.
+> **Status:** Proposed relationship map, not a verified dependency graph. The expected `x4-spec` repository could not be resolved through the connected GitHub API; `x4-mcp` is shown as a practical candidate replacement, not as a confirmed reusable-workflow hub. Verify exported interfaces and actual imports before treating any edge as implemented.
 
 ```mermaid
 flowchart TB
   subgraph Governance["Governance and workflow"]
-    SPEC["x4-spec — unresolved"]
+    SPEC["x4-mcp — candidate hub substitute"]
     FLEET["x4-fleet"]
     LAB["workflow-lab"]
     SCAFFOLD["project-scaffold"]
@@ -152,7 +152,7 @@ flowchart TB
   FLEET -. "audits repository state" .-> CORE
   FLEET -. "audits repository state" .-> AGENTS
   FLEET -. "audits repository state" .-> BEAST
-  SPEC -. "reusable workflow hub — unresolved" .-> LAB
+  SPEC -. "workflow hub relationship unverified" .-> LAB
   style SPEC fill:#bf8700,color:#fff,stroke-dasharray:5 5
   style CORE fill:#1a7f37,color:#fff
   style BEAST fill:#1a7f37,color:#fff
