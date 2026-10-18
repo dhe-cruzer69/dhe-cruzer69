@@ -27,82 +27,74 @@ I build developer infrastructure where agents are powerful by design but limited
 
 ## Architecture map
 
+> **Evidence boundary:** Dashed edges are proposed relationships, not verified imports. `x4-spec` could not be resolved by the connected API; `x4-mcp` is an existing candidate replacement, but its workflow-hub role is unverified.
+
 ```mermaid
 flowchart TB
-    subgraph CONTROL["Runtime and control plane"]
-        CORE[x4-core]
-        BEAST[x4-beast]
-        AGENTS[x4-agents]
-        SANDBOX[x4-sandbox]
-        APPROVAL[x4-approval]
-        AI[x4-ai]
-        ROUTER[x4-router]
-        LOCAL[x4-local-ai-runtime]
-    end
-    subgraph TOOLS["Tooling and integration"]
-        GATEWAY[x4-mcp-gateway]
-        MCPPROD[x4-mcp-prod]
-        MCPGEN[x4-mcpgen]
-        WORKFLOW[workflow-lab]
-        SKILLS[x4-agent-skills-hub]
-        SCAFFOLD[project-scaffold]
-    end
-    subgraph TRUST["Verification and fleet health"]
-        FLEET[x4-fleet]
-        AUTOFIX[x4-autofix]
-        EVIDENCE[x4-evidence]
-        EVALH[x4-eval-harness]
-        EVAL[x4-eval]
-        OBS[x4-agent-observability]
-        SCANNER[x4-ai-security-scanner]
-    end
-    subgraph STATE["Memory and research"]
-        MEMORY[x4-memory]
-        MEMORYCORE[x4-memory-core]
-        CONTEXT[x4-context]
-        RESEARCH[x4-research]
-        HARNESS[x4-harness]
-    end
-    subgraph MVP["MVPs and governance baselines"]
-        ARIEXUS[ariexus]
-        OMNI[omniforge]
-        ARISE[arise-v9]
-    end
-    SPEC["x4-spec — planned hub; not found in live inventory"]
-    CORE --> BEAST
-    CORE --> AGENTS
-    CORE --> AI
-    CORE --> MEMORY
-    AGENTS --> SKILLS
-    AGENTS --> HARNESS
-    AGENTS --> CONTEXT
-    AGENTS --> RESEARCH
-    AGENTS --> SANDBOX
-    AGENTS --> GATEWAY
-    BEAST --> APPROVAL
-    BEAST --> SCANNER
-    BEAST --> ROUTER
-    ROUTER --> LOCAL
-    GATEWAY --> MCPPROD
-    MCPGEN --> GATEWAY
-    WORKFLOW -. reusable workflows .-> SCAFFOLD
-    AUTOFIX --> EVIDENCE
-    SANDBOX --> EVIDENCE
-    AGENTS --> EVALH
-    EVALH --> EVAL
-    OBS --> EVIDENCE
-    MEMORYCORE --> MEMORY
-    FLEET -. read-only inventory and health .-> CORE
-    FLEET -. reads status .-> AGENTS
-    FLEET -. reads status .-> BEAST
-    ARIEXUS -. prototype lineage .-> AGENTS
-    OMNI -. local workbench .-> AI
-    ARISE -. governance baseline .-> SPEC
-    SPEC -. proposed shared workflow hub .-> WORKFLOW
-    classDef kernel fill:#16202a,stroke:#d89b32,color:#fff
-    classDef trust fill:#34251a,stroke:#d89b32,color:#fff
-    class CORE,BEAST,AGENTS kernel
-    class FLEET,EVIDENCE,EVALH,SCANNER trust
+  subgraph Governance["Governance and workflow"]
+    MCPH["x4-mcp — candidate hub substitute"]
+    FLEET["x4-fleet"]
+    LAB["workflow-lab"]
+    SCAFFOLD["project-scaffold"]
+    ARISE["arise-v9"]
+  end
+  subgraph Runtime["Runtime and orchestration"]
+    CORE["x4-core"]
+    BEAST["x4-beast"]
+    AGENTS["x4-agents"]
+    HARNESS["x4-harness"]
+    LOCAL["x4-local-ai-runtime"]
+    OMNI["omniforge"]
+    ARIEXUS["ariexus"]
+  end
+  subgraph Policy["Safety and evidence"]
+    SANDBOX["x4-sandbox"]
+    APPROVAL["x4-approval"]
+    AUTOFIX["x4-autofix"]
+    EVIDENCE["x4-evidence"]
+    CONTEXT["x4-context"]
+  end
+  subgraph Capabilities["Capability modules"]
+    SKILLS["x4-agent-skills-hub"]
+    AI["x4-ai"]
+    ROUTER["x4-router"]
+    RESEARCH["x4-research"]
+    MEMORY["x4-memory"]
+    MEMORYCORE["x4-memory-core"]
+    MCPG["x4-mcp-gateway"]
+    MCPPROD["x4-mcp-prod"]
+    MCPGEN["x4-mcpgen"]
+  end
+  subgraph Quality["Quality and observability"]
+    SCANNER["x4-ai-security-scanner"]
+    OBS["x4-agent-observability"]
+    EVAL["x4-eval"]
+    EVALH["x4-eval-harness"]
+  end
+  CORE -. "intended runtime dependency" .-> BEAST
+  CORE -. "intended orchestration dependency" .-> AGENTS
+  CORE -. "intended execution boundary" .-> SANDBOX
+  BEAST -. "candidate integration" .-> APPROVAL
+  BEAST -. "candidate scanning integration" .-> SCANNER
+  AGENTS -. "candidate skill lookup" .-> SKILLS
+  AGENTS -. "candidate telemetry" .-> OBS
+  AGENTS -. "candidate context" .-> CONTEXT
+  AGENTS -. "candidate research" .-> RESEARCH
+  AI -. "candidate provider selection" .-> ROUTER
+  MEMORYCORE -. "adapter contract candidate" .-> MEMORY
+  MCPGEN -. "candidate schema generation" .-> MCPG
+  MCPG -. "gateway-to-service candidate" .-> MCPPROD
+  APPROVAL -. "approval evidence candidate" .-> EVIDENCE
+  AUTOFIX -. "patch receipt candidate" .-> EVIDENCE
+  EVAL -. "score producer candidate" .-> EVALH
+  FLEET -. "audits repository state" .-> CORE
+  FLEET -. "audits repository state" .-> AGENTS
+  FLEET -. "audits repository state" .-> BEAST
+  MCPH -. "workflow hub relationship unverified" .-> LAB
+  style MCPH fill:#bf8700,color:#fff,stroke-dasharray:5 5
+  style CORE fill:#1a7f37,color:#fff
+  style BEAST fill:#1a7f37,color:#fff
+  style SANDBOX fill:#bf8700,color:#fff
 ```
 
 ## Engineering rules
