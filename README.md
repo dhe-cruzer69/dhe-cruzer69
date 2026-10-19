@@ -8,6 +8,14 @@ I build developer infrastructure where agents are powerful by design but limited
 
 [Explore the X4 ecosystem](https://github.com/dhe-cruzer69) · [View the source portfolio](https://github.com/dhe-cruzer69?tab=repositories) · [Open activity and engineering history](https://github.com/dhe-cruzer69?tab=activity)
 
+## Recent Activity
+
+<!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
+
+<!-- X4_PROFILE_DATA_START -->
+<!-- X4_PROFILE_DATA_END -->
+
 ---
 
 ## Featured engineering
