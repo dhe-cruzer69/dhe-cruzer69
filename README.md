@@ -10,6 +10,14 @@ I build developer infrastructure where agents are powerful by design but limited
 
 ---
 
+## Support the work
+
+If the X4 approach to local-first AI, security-governed automation, and evidence-first engineering is useful, consider [sponsoring ARIEX4Ops](https://github.com/sponsors/dhe-cruzer69).
+
+Sponsorships help sustain implementation, testing, documentation, security improvements, and maintenance of public projects. Contributions are voluntary; sponsorship does not guarantee specific features, delivery dates, financial returns, production readiness, or dedicated support.
+
+---
+
 ## Featured engineering
 
 | Project | Purpose and current scope |
