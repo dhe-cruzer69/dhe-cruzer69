@@ -101,3 +101,67 @@ Never suppress failing tests with `|| true`; a skipped security check is not a p
 
 *Strategy note added 27 October 2026. Product scopes and migration relationships are proposals until supported by implementation evidence.*
 
+## Mythos × Fable: the intelligence and trust layer
+
+**Positioning:** Mythos proposes and explains engineering changes; Fable independently evaluates evidence and policy; X4 coordinates tools and enforces authorization. These are complementary roles, not three names for the same agent.
+
+### Mythos — repository understanding and controlled recoding
+
+Mythos should turn a real repository problem into an inspectable engineering decision:
+1. **Understand:** map files, entry points, dependencies, tests, configuration, workflows and documented behavior. Mark inaccessible or unparsed areas as unknown.
+2. **Diagnose:** tie every finding to a file/line, reproducible command, test result or explicit hypothesis. Rank by impact, confidence and remediation cost.
+3. **Design:** produce a short decision record with alternatives, trade-offs, compatibility impact and a rollback path.
+4. **Propose:** generate the smallest coherent patch on a review branch. Show the diff before any write and never silently rewrite a user's working tree or default branch.
+5. **Prove:** propose regression tests, run only in an authorized environment, and attach actual command output and commit identity. A generated test is not a passed test.
+
+**MVP acceptance gate:** on one selected repository, Mythos can explain a defect with source evidence, create a minimal reviewable patch, add a regression test, and report honestly what was and was not executed. No broad autonomous refactor is required for the first release.
+
+### Fable — evidence graph and policy gate
+
+Fable should evaluate claims independently of the agent that made them:
+- Represent a claim as **claim → evidence → method/version → timestamp → result → reviewer**.
+- Use explicit states: **OBSERVED**, **CORRELATED**, **HYPOTHESIS**, **VALIDATED**, and **UNKNOWN — HUMAN REVIEW REQUIRED**.
+- Treat missing, stale, contradictory, skipped or inaccessible evidence as unknown or failing according to the declared policy—not as green.
+- Validate CI conclusions against the exact head SHA; distinguish workflow completion, individual check outcomes, required-check configuration and merge authorization.
+- Preserve evidence provenance and redaction rules. A hash chain can detect alteration of recorded events; it cannot prove the events were truthful when created.
+- Keep scoring explainable. Publish rubric, weights, evidence links, check dates and uncertainty; do not turn an unvalidated score into a security certification.
+
+**MVP acceptance gate:** seeded fixtures prove Fable catches a suppressed linter failure, a skipped required check, stale evidence, an absent test suite and a claim with no supporting artifact. Negative tests must demonstrate that each case cannot be reported as PASS.
+
+### The separation of duties
+
+| Component | May do | Must not do |
+|---|---|---|
+| Mythos | Inspect authorized source; explain findings; propose diffs and tests | Approve its own patch or claim unrun tests passed |
+| Fable | Evaluate evidence, policy and confidence; emit a reasoned gate result | Invent evidence, repair its own failed gate silently or infer authorization from a green check |
+| X4 control plane | Enforce capability grants, approvals, budgets, timeouts, sandbox routing and audit receipts | Treat model output as policy; bypass denied or unknown controls |
+| Human maintainer | Approve high-impact changes, resolve ambiguity, accept risk and authorize merge/release | Be pressured by opaque scores or fabricated urgency |
+
+Use versioned, typed contracts between components. A proposed finding should include a stable finding ID, repository identity, commit SHA, location, severity, confidence, evidence references, suggested remediation and policy version. A proposed change should include a patch digest, affected paths, test plan, risk summary and required approvals. Reject malformed or unknown schema versions.
+
+### Authentic connection: build trust with users, not just features
+
+- **Show the work:** every important conclusion links to evidence, a diff, or a reproducible command.
+- **Respect user intent:** explain what will change and why; offer a small reversible step before a broad migration.
+- **Make uncertainty legible:** use plain-language limitations, confidence rationale and clear next steps instead of inflated claims.
+- **Invite correction:** provide issue templates for expected behavior, reproduction steps, environment, redacted logs and acceptance criteria. Treat maintainer feedback as evidence, not an interruption.
+- **Close the loop:** link reports to fixes, regression tests and release notes so users can verify that their reported problem was addressed.
+- **Protect privacy:** local-first by default where practical; disclose every external model/provider boundary and what data crosses it. Redact secrets and personal data from logs and issue reports.
+- **Measure value honestly:** track time-to-reproduce, accepted-fix rate, regression rate, false-positive rate, evidence completeness and onboarding success. Do not optimize for stars or activity counts alone.
+
+### Delivery sequence
+
+1. **Foundation:** define finding/evidence schemas, status vocabulary, threat model, data-retention rules and review-branch workflow.
+2. **Fable first:** implement deterministic evidence parsing and negative fixtures so the governance gate is testable before it is trusted.
+3. **Mythos read-only:** add repository mapping and evidence-linked diagnosis without write access.
+4. **Mythos patch proposals:** generate small diffs and tests on a non-default branch; require explicit approval before applying changes.
+5. **X4 orchestration:** add least-privilege tool grants, bounded execution, cancellation, audit receipts and policy-enforced approvals.
+6. **Pilot:** test on one maintained repository with known defects and seeded false-green cases; publish results, failures and limitations.
+7. **Expand carefully:** add repositories only after owner consent, license/provenance checks, baseline snapshots and a rollback plan.
+
+### Release gate
+
+Do not label Mythos or Fable production-ready until the relevant implementation exists and evidence shows: unit and integration tests pass on the exact commit; negative authorization and false-green tests pass; secrets are not exposed; dependencies and actions are pinned/checked; clean-environment setup is documented; and limitations are disclosed. A skipped, missing or unobservable required check remains **UNKNOWN — HUMAN REVIEW REQUIRED**.
+
+*Mythos × Fable is a proposed product direction. This section does not assert that these components are implemented or validated today.*
+
