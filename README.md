@@ -25,7 +25,7 @@
 
 ## 🧭 About
 
-**CruzX Systems** is my engineering identity for AI systems, automation, infrastructure, research, and operational tooling.
+**CruzX Systems** is an engineering identity focused on AI systems, automation, infrastructure, research, and operational tooling.
 
 The goal is to turn ideas into understandable, testable, and maintainable implementations while keeping a clear boundary between proposed architecture, working functionality, and validated outcomes.
 
@@ -48,7 +48,7 @@ These are portfolio focus areas, not a claim that every capability is implemente
 
 ## 🏛️ Proposed Portfolio Architecture
 
-The map below describes the intended CruzX portfolio structure. It is a conceptual grouping, **not a verified dependency graph or a list of renamed repositories**.
+This diagram describes the intended CruzX portfolio structure. It is a conceptual grouping, **not a verified dependency graph or a list of renamed repositories**.
 
 ```mermaid
 flowchart TD
@@ -72,30 +72,30 @@ flowchart TD
     I --> I1["Operations and automation"]
 ```
 
-## 🧩 Repository Inventory — Existence Checked
+## 🧩 Repository Inventory — Existence Verified
 
-The repositories linked below were confirmed to exist and be public in a connected GitHub metadata check on **28 October 2026**. This check confirms repository identity and visibility only; it does **not** establish implementation completeness, test status, security posture, or production readiness.
+The repositories below were checked through GitHub repository metadata on **28 October 2026**. The check confirms existence, public visibility, non-archived status, and the `main` default branch for the listed repositories. It does **not** validate implementation completeness, tests, security posture, or production readiness.
 
 | Repository | Intended area | Evidence status |
 |---|---|---|
-| [x4-core](https://github.com/Dhe-cruzer69/x4-core) | Core runtime and shared foundations | Repository existence confirmed; implementation audit pending |
-| [x4-agents](https://github.com/Dhe-cruzer69/x4-agents) | Agent workflows and orchestration | Repository existence confirmed; implementation audit pending |
-| [x4-sandbox](https://github.com/Dhe-cruzer69/x4-sandbox) | Execution policy and sandboxing | Repository existence confirmed; isolation and implementation audit pending |
-| [x4-mcp-gateway](https://github.com/Dhe-cruzer69/x4-mcp-gateway) | MCP integration and routing | Repository existence confirmed; implementation audit pending |
-| [x4-memory](https://github.com/Dhe-cruzer69/x4-memory) | Memory and retrieval | Repository existence confirmed; implementation audit pending |
-| [x4-research](https://github.com/Dhe-cruzer69/x4-research) | Research and evaluation | Repository existence confirmed; implementation audit pending |
-| [x4-ai](https://github.com/Dhe-cruzer69/x4-ai) | AI tooling and interfaces | Repository existence confirmed; implementation audit pending |
-| [x4-fleet](https://github.com/Dhe-cruzer69/x4-fleet) | Portfolio operations and inventory | Repository existence confirmed; implementation audit pending |
-| [x4-mcp](https://github.com/Dhe-cruzer69/x4-mcp) | MCP-related tooling | Repository existence confirmed; purpose and implementation audit pending |
+| [x4-core](https://github.com/Dhe-cruzer69/x4-core) | Core runtime and shared foundations | Existence verified; implementation audit pending |
+| [x4-agents](https://github.com/Dhe-cruzer69/x4-agents) | Agent workflows and orchestration | Existence verified; implementation audit pending |
+| [x4-sandbox](https://github.com/Dhe-cruzer69/x4-sandbox) | Execution policy and sandboxing | Existence verified; isolation audit pending |
+| [x4-mcp-gateway](https://github.com/Dhe-cruzer69/x4-mcp-gateway) | MCP integration and routing | Existence verified; implementation audit pending |
+| [x4-mcp](https://github.com/Dhe-cruzer69/x4-mcp) | MCP-related tooling | Existence verified; purpose and implementation audit pending |
+| [x4-memory](https://github.com/Dhe-cruzer69/x4-memory) | Memory and retrieval | Existence verified; implementation audit pending |
+| [x4-research](https://github.com/Dhe-cruzer69/x4-research) | Research and evaluation | Existence verified; implementation audit pending |
+| [x4-ai](https://github.com/Dhe-cruzer69/x4-ai) | AI tooling and interfaces | Existence verified; implementation audit pending |
+| [x4-fleet](https://github.com/Dhe-cruzer69/x4-fleet) | Portfolio operations and inventory | Existence verified; implementation audit pending |
 
-**Brand migration status:** CruzX names are a proposed public identity. No repository rename, archive, deletion, or transfer is implied by this README update.
+**Brand migration status:** CruzX names are a proposed public identity. No repository rename, archive, deletion, or transfer is implied by this README.
 
-For each project, the next audit should record the problem, actual implementation, meaningful tests, CI integrity, security controls, limitations, and reproducible evidence.
+For each project, future summaries should identify the problem, actual implementation, meaningful tests, CI integrity, security controls, limitations, and reproducible evidence.
 
 ## ⚙️ Engineering Principles
 
 - **Evidence over assumptions** — link claims to inspectable source or recorded results.
-- **Fail closed** — unknown or unavailable required controls must not silently authorize risky actions.
+- **Fail closed** — required controls that are unknown or unavailable must not silently authorize risky actions.
 - **Least privilege** — scope credentials and automation permissions to the minimum required.
 - **Security by design** — treat trust boundaries, secrets, dependencies, and untrusted execution explicitly.
 - **Reproducibility** — document setup, test commands, versions, and known limitations.
